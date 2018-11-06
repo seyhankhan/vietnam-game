@@ -1,4 +1,4 @@
-# vietnam-game
+# The Vietnam War Game (text based)
 
 Execute `game.py` in Python 3
 
