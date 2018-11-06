@@ -60,9 +60,9 @@ while True:
         ):
             break
         else:
-            print("Weapon must match race.")
+            print("\nWeapon must match race.")
     else:
-        print("Please choose from the above weapon choices")
+        print("\nPlease choose from the above weapon choices")
 
 # Initiliases the opponents list
 # Will contain all opponent objects to iterate through during turns
@@ -100,6 +100,7 @@ for opp in opponents:
 
 
 roundnum = 0
+# Game doesn't end until player dies or wins (by killing all opponents)
 while True:
     roundnum += 1
     # Prints round number at center of terminal
