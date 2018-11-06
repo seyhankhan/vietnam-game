@@ -3,40 +3,67 @@
 ########### November 2018
 """ CLASSES LIST
     Array:
-        Place(name, coordinates)
-        SpaceEmpty(coordinates)
-        RandCoord()
-        FindPos(element)
-        CheckMaxCoor(coordinates)
-        DistanceBetween(object1, object2)
-        OutputWarZone()
+        Attributes:
+           Array.empty
+            Array.warzonelength
+            Array.warzone
+            Array.Map
+        Methods:
+            Place(name, coordinates)
+            SpaceEmpty(coordinates)
+            RandCoord()
+            CheckMaxCoor(coordinates)
+            DistanceBetween(object1, object2)
+            OutputWarZone()
 
     Race(Array):
-        ShowStats()
-        Pos(xy)
-        Energy_Points()
-        ChangeWeapon(new_weapon1)
-        ChangeEP(amount)
-        Change_Health(amount)
-        ChangeAccuracy(amount)
-        SetName(boardname, displayname)
-        InputAttack(opponents, mine=None)
-        Attack(attacked, weapon, coordinates)
-        InputMove()
-        Move(horizontal, vertical)
+        Attributes:
+            self.weapon1 = weapon (aggregation)
+            self.mine = Mine() (composition)
+            string displayname
+            string boardname
+            int _maxhealth
+            int _health
+            int _energy_points
+            int _accuracy
+            int xcor
+            int ycor
+        Methods:
+            ShowStats()
+            Pos(xy)
+            Energy_Points()
+            ChangeWeapon(new_weapon1)
+            ChangeEP(amount)
+            Change_Health(amount)
+            ChangeAccuracy(amount)
+            SetName(boardname, displayname)
+            InputAttack(opponents, mine=None)
+            Attack(attacked, weapon, coordinates)
+            InputMove()
+            Move(horizontal, vertical)
 
     American(Race)
 
     Vietnamese(Race)
 
     Weapon(Array):
-        EPCost()
-        Attack()
-        CalculateDamage()
+        Attributes:
+            string name
+            int _damage_per_hit
+            int _reload_time
+            int _accuracy
+            int _range
+            int _rangemodifier
+            int _EP_cost
+        Methods:
+            EPCost()
+            Attack()
+            CalculateDamage()
 
     Mine(Weapon):
-        PlaceMine()
-        OverMine(coordinates)
+        Methods:
+            PlaceMine(opponent, coordinates)
+            OverMine(coordinates)
 
     M16(Weapon)
 
@@ -79,13 +106,6 @@ class Array:
             if Array.SpaceEmpty((xrand, yrand)):
                 return xrand, yrand
 
-    def FindPos(element):
-        # Finds the position of an element given its board name
-        for row in Array.warzone:
-            if element in row:
-                break
-        return row.index(element), Array.warzone.index(row)
-
     def CheckMaxCoor(coordinates):
         # Adjusts coordinates to fit within the boundaries of the warzone array
         xcor, ycor = coordinates
@@ -126,6 +146,7 @@ class Array:
 class Race(Array):
     """ Contains the attributes & methods for all races / soldiers """
     def __init__(self, playerID, displayname, boardname, weapon1, start_energy_points, accuracy, start_pos):
+        # ID is a unique identifiable number given to each character
         # The name showed in terminal
         self.displayname = displayname + str(playerID)
         # The name showed in the warzone array
